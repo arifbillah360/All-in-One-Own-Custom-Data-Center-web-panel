@@ -57,17 +57,17 @@
 **Method 1: Using Hostname (Easiest)**
 ```bash
 # From your laptop/desktop:
-ping arif-server.local
+ping gub-server.local
 
 # Or directly SSH:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 ```
 
 **Method 2: Router Admin Panel**
 1. Open browser: `http://192.168.1.1` or `http://192.168.0.1`
 2. Login with router credentials
 3. Find "Connected Devices" or "DHCP Client List"
-4. Look for device named "arif-server" or "ubuntu"
+4. Look for device named "gub-server" or "ubuntu"
 5. Note the IP address (e.g., `192.168.1.105`)
 
 **Method 3: Using nmap (Advanced)**
@@ -78,14 +78,14 @@ sudo apt install nmap
 # Scan your network:
 nmap -sn 192.168.1.0/24
 
-# Look for "arif-server" in results
+# Look for "gub-server" in results
 ```
 
 ### Step 2: Initial System Update
 
 ```bash
 # SSH to your Pi:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 # Enter password when prompted
 
 # Update system:
@@ -141,12 +141,12 @@ timedatectl
 
 **Terminal 1:** For installation
 ```bash
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 ```
 
 **Terminal 2:** For monitoring
 ```bash
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Run power monitor:
 watch -n 2 'echo "=== System Monitor ===" && date && echo "" && vcgencmd measure_temp && vcgencmd get_throttled && vcgencmd measure_volts core && echo "" && free -h | grep Mem && echo "" && uptime'
@@ -305,7 +305,7 @@ exit
 sudo reboot
 
 # Wait 2-3 minutes, then SSH back:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Verify services running:
 sudo systemctl status lsws        # OpenLiteSpeed
@@ -328,7 +328,7 @@ URL: https://YOUR_PI_IP:8090
 
 Examples:
 - https://192.168.1.105:8090
-- https://arif-server.local:8090
+- https://gub-server.local:8090
 ```
 
 #### Step 2: SSL Certificate Warning
@@ -337,7 +337,7 @@ Examples:
 
 **Chrome:**
 1. Click "Advanced"
-2. Click "Proceed to arif-server.local (unsafe)"
+2. Click "Proceed to gub-server.local (unsafe)"
 
 **Firefox:**
 1. Click "Advanced"
@@ -345,7 +345,7 @@ Examples:
 
 **Edge:**
 1. Click "Advanced"
-2. Click "Continue to arif-server.local"
+2. Click "Continue to gub-server.local"
 
 **Why this happens:** CyberPanel uses self-signed SSL certificate. This is safe for local network access.
 
@@ -379,13 +379,13 @@ Password: [Your password from installation]
 
 ```bash
 # Standard connection:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Or with IP:
-ssh arif@192.168.1.105
+ssh gub@192.168.1.105
 
 # Specify port (default 22):
-ssh -p 22 arif@arif-server.local
+ssh -p 22 gub@gub-server.local
 ```
 
 #### From Windows:
@@ -396,20 +396,20 @@ ssh -p 22 arif@arif-server.local
 # Windows Key + X, select "Windows PowerShell"
 
 # Connect:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 ```
 
 **Method 2: PuTTY**
 1. Download PuTTY: https://www.putty.org/
 2. Install and open PuTTY
 3. Configuration:
-   - Host Name: `arif-server.local` or `192.168.1.105`
+   - Host Name: `gub-server.local` or `192.168.1.105`
    - Port: `22`
    - Connection type: `SSH`
 4. Click "Open"
 5. Accept security alert (first time only)
 6. Login:
-   - Username: `arif`
+   - Username: `gub`
    - Password: [your password]
 
 ### SSH Key Authentication (Advanced - Recommended)
@@ -425,7 +425,7 @@ ssh arif@arif-server.local
 **Linux/Mac:**
 ```bash
 # Generate key:
-ssh-keygen -t ed25519 -C "arif-laptop"
+ssh-keygen -t ed25519 -C "gub-laptop"
 
 # Output:
 # Generating public/private ed25519 key pair.
@@ -439,7 +439,7 @@ ssh-keygen -t ed25519 -C "arif-laptop"
 **Windows (PowerShell):**
 ```powershell
 # Generate key:
-ssh-keygen -t ed25519 -C "arif-laptop"
+ssh-keygen -t ed25519 -C "gub-laptop"
 
 # Follow same prompts as Linux/Mac
 ```
@@ -449,7 +449,7 @@ ssh-keygen -t ed25519 -C "arif-laptop"
 **Linux/Mac:**
 ```bash
 # Copy key:
-ssh-copy-id arif@arif-server.local
+ssh-copy-id gub@gub-server.local
 
 # Enter your Pi password one last time
 ```
@@ -457,7 +457,7 @@ ssh-copy-id arif@arif-server.local
 **Windows:**
 ```powershell
 # Copy key manually:
-type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh arif@arif-server.local "cat >> ~/.ssh/authorized_keys"
+type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh gub@gub-server.local "cat >> ~/.ssh/authorized_keys"
 
 # Enter password
 ```
@@ -466,7 +466,7 @@ type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh arif@arif-server.local "cat >> ~
 
 ```bash
 # Try connecting (should not ask for password):
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Should login directly! ✓
 ```
@@ -475,7 +475,7 @@ ssh arif@arif-server.local
 
 ```bash
 # SSH to Pi:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Edit SSH config:
 sudo nano /etc/ssh/sshd_config
@@ -503,13 +503,13 @@ nano ~/.ssh/config
 
 # Add:
 Host pi
-    HostName arif-server.local
-    User arif
+    HostName gub-server.local
+    User gub
     Port 22
 
 Host pi-office
-    HostName arif-server.local
-    User arif
+    HostName gub-server.local
+    User gub
     Port 22
 
 # Save and exit
@@ -550,10 +550,10 @@ CyberPanel uses **Pure-FTPd** server. There are **two types of FTP access:**
 
 ```bash
 # SSH to Pi:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Create FTP user with admin privileges:
-sudo pure-pw useradd arifftp -u root -d /home
+sudo pure-pw useradd gubftp -u root -d /home
 
 # You'll be prompted for password:
 # Password: [enter secure password]
@@ -574,16 +574,16 @@ sudo systemctl restart pure-ftpd
 
 **FileZilla Configuration:**
 ```
-Host: sftp://arif-server.local   (or sftp://192.168.1.105)
-Username: arif
+Host: sftp://gub-server.local   (or sftp://192.168.1.105)
+Username: gub
 Password: [your Pi password]
 Port: 22
 ```
 
 **Or using FTP:**
 ```
-Host: ftp://arif-server.local    (or ftp://192.168.1.105)
-Username: arifftp
+Host: ftp://gub-server.local    (or ftp://192.168.1.105)
+Username: gubftp
 Password: [FTP password you set]
 Port: 21
 ```
@@ -593,9 +593,9 @@ Port: 21
 2. File → Site Manager → New Site
 3. Fill details:
    - Protocol: `SFTP - SSH File Transfer Protocol` (recommended)
-   - Host: `arif-server.local`
+   - Host: `gub-server.local`
    - Logon Type: `Normal`
-   - User: `arif`
+   - User: `gub`
    - Password: [your password]
 4. Click "Connect"
 
@@ -603,7 +603,7 @@ Port: 21
 
 #### Step 1: Create FTP Account via CyberPanel
 
-1. **Login to CyberPanel:** `https://arif-server.local:8090`
+1. **Login to CyberPanel:** `https://gub-server.local:8090`
 
 2. **Navigate:**
    - FTP → Create FTP Account
@@ -622,7 +622,7 @@ Port: 21
 
 **FileZilla Settings:**
 ```
-Host: ftp://arif-server.local
+Host: ftp://gub-server.local
 Username: mysite_ftp@your-domain.com
 Password: [password from CyberPanel]
 Port: 21
@@ -657,7 +657,7 @@ sudo ufw allow 40110:40210/tcp
 sudo pure-pw list
 
 # Reset password:
-sudo pure-pw passwd arifftp
+sudo pure-pw passwd gubftp
 # Enter new password
 
 # Update database:
@@ -725,9 +725,9 @@ sudo systemctl restart pure-ftpd
 
 ```
 Protocol: SFTP - SSH File Transfer Protocol
-Host: arif-server.local
+Host: gub-server.local
 Port: 22
-Username: arif
+Username: gub
 Password: [your Pi password]
 ```
 
@@ -743,7 +743,7 @@ Password: [your Pi password]
 
 ```bash
 # SSH to Pi:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Navigate to website:
 cd /home/your-domain.com/public_html/
@@ -783,16 +783,16 @@ chmod 755 folder/        # Folders: 755
 
 ```bash
 # Upload single file:
-scp /local/path/file.php arif@arif-server.local:/home/your-domain.com/public_html/
+scp /local/path/file.php gub@gub-server.local:/home/your-domain.com/public_html/
 
 # Upload entire folder:
-scp -r /local/path/folder/ arif@arif-server.local:/home/your-domain.com/public_html/
+scp -r /local/path/folder/ gub@gub-server.local:/home/your-domain.com/public_html/
 
 # Download file:
-scp arif@arif-server.local:/home/your-domain.com/public_html/config.php /local/path/
+scp gub@gub-server.local:/home/your-domain.com/public_html/config.php /local/path/
 
 # Download folder:
-scp -r arif@arif-server.local:/home/your-domain.com/public_html/ /local/path/
+scp -r gub@gub-server.local:/home/your-domain.com/public_html/ /local/path/
 ```
 
 ### Method 4: WinSCP (Windows)
@@ -802,9 +802,9 @@ scp -r arif@arif-server.local:/home/your-domain.com/public_html/ /local/path/
 **Configuration:**
 ```
 File Protocol: SFTP
-Host name: arif-server.local
+Host name: gub-server.local
 Port: 22
-Username: arif
+Username: gub
 Password: [your password]
 ```
 
@@ -821,7 +821,7 @@ Password: [your password]
 
 ### Step 1: Create Website via CyberPanel
 
-1. **Login to CyberPanel:** `https://arif-server.local:8090`
+1. **Login to CyberPanel:** `https://gub-server.local:8090`
 
 2. **Navigate:**
    - Websites → Create Website
@@ -873,7 +873,7 @@ Password: [your password]
 
 ```bash
 # SSH to Pi:
-ssh arif@arif-server.local
+ssh gub@gub-server.local
 
 # Navigate to website:
 cd /home/test.local/public_html/
@@ -1036,7 +1036,7 @@ $serverInfo = [
         <div class="footer">
             <p>Powered by CyberPanel on Raspberry Pi 5</p>
             <p style="margin-top: 5px; font-size: 0.9em;">
-                Hosted by Arif • <?php echo date('Y'); ?>
+                Hosted by gub • <?php echo date('Y'); ?>
             </p>
         </div>
     </div>
@@ -1079,7 +1079,7 @@ sudo find /home/test.local/public_html/ -type f -exec chmod 644 {} \;
 
 **In browser, visit:**
 ```
-http://arif-server.local
+http://gub-server.local
 http://192.168.1.105
 http://test.local (if configured in hosts file)
 ```
@@ -1281,7 +1281,7 @@ chmod +x ~/performance_monitor.sh
 
 **Symptoms:**
 - Browser shows "Connection refused" or timeout
-- `https://arif-server.local:8090` doesn't load
+- `https://gub-server.local:8090` doesn't load
 
 **Solutions:**
 
@@ -1643,8 +1643,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=arif
-ExecStart=/home/arif/performance_monitor_daemon.sh
+User=gub
+ExecStart=/home/gub/performance_monitor_daemon.sh
 Restart=always
 RestartSec=10
 
@@ -1896,7 +1896,7 @@ You now have a fully functional CyberPanel installation on your Raspberry Pi 5!
 
 **Document Version:** 1.0  
 **Last Updated:** December 2024  
-**Author:** Md Arif Billah  
+**Author:** Md gub Billah  
 **Contact:** [Your contact info]
 
 **Happy Hosting! 🚀**
