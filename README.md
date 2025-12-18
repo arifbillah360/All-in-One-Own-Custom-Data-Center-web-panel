@@ -5,7 +5,7 @@
 **Date:** December 2024  
 **Hardware:** Raspberry Pi 5 (4GB/8GB)  
 **OS:** Ubuntu Server 24.04 LTS  
-**Power:** Baseus PPADM20S 20000mAh Power Bank (5V/3A)
+**Power:** Respberi pi official (5V/5A)
 
 ---
 
